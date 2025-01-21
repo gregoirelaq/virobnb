@@ -61,12 +61,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_18_134026) do
     t.string "region"
     t.string "vaccine_availability"
     t.string "image_url"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_viri_on_user_id"
   end
 
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "viri"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "viri"
+  add_foreign_key "viri", "users"
 end
