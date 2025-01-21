@@ -10,9 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_18_130239) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_18_134026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "virus_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["virus_id"], name: "index_bookings_on_virus_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "virus_id", null: false
+    t.string "title"
+    t.string "description"
+    t.integer "rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["virus_id"], name: "index_reviews_on_virus_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +50,23 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_18_130239) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "viri", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.decimal "price"
+    t.integer "contagion_rate"
+    t.string "symptom_severity"
+    t.integer "incubation_period"
+    t.integer "duration"
+    t.string "region"
+    t.string "vaccine_availability"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "viri"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "viri"
 end
