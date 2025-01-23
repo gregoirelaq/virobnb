@@ -9,3 +9,4 @@
 #   end
 User.create(email: "nusay@gmail.com", password: "123456")
 Virus.create(name: "Ebola", description: "Mortal flu, kind of", price: 100)
+Virus.create(name: "Covid-19", description: "Worldwide spread in 2019", price: 120)
