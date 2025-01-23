@@ -23,5 +23,4 @@ class ViriController < ApplicationController
   def virus_params
     params.require(:virus).permit(:name, :price, :description)
   end
-
 end
