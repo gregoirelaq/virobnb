@@ -1,0 +1,22 @@
+$error-color: #e74c3c; /* Red color for errors */
+
+.error-messages {
+  background-color: $error-color;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.error-messages h2 {
+  margin: 0 0 10px;
+}
+
+.error-messages ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.error-messages li {
+  margin-bottom: 5px;
+}

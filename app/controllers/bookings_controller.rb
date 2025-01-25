@@ -33,6 +33,21 @@ class BookingsController < ApplicationController
     end
   end
 
+  # Ajout d'une action pour gérer le calcul dynamique du prix lorsque les dates sont sélectionnées
+
+    # GET /bookings/calculate_price
+    def calculate_price
+      @virus = Virus.find(params[:virus_id])
+      start_date = params[:start_date].to_date
+      end_date = params[:end_date].to_date
+
+      if start_date.present? && end_date.present? && start_date < end_date
+        total_days = (end_date - start_date).to_i
+        total_price = total_days * @virus.price
+
+      end
+    end
+
   private
 
   # Trouver une réservation spécifique pour l'action `destroy`
@@ -52,4 +67,5 @@ class BookingsController < ApplicationController
     days = (end_date - start_date).to_i
     days * price_per_day
   end
+
 end

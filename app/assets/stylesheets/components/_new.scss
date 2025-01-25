@@ -1,0 +1,44 @@
+/* app/assets/stylesheets/pages/new.scss */
+
+@import '../components/buttons';   // Import button styles
+@import '../components/form-fields'; // Import form field styles
+@import '../components/errors'; // Import error message styles
+
+/* Page-specific styles */
+$primary-color: #ff6347; /* Tomato red for the page title */
+
+body {
+  display: flex;
+  justify-content: center;  /* Horizontally center the form */
+  align-items: center;      /* Vertically center the form */
+  height: 100vh;            /* Take full viewport height */
+  margin: 0;                /* Remove default margin */
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: $primary-color;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Set a max width to prevent form from stretching too wide */
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  form {
+    padding: 20px;
+  }
+}
