@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center">
+  <div class="virus-container grid">
+    <% @viri.each do |virus| %>
+    <div class="virus-card mb-3 g-col-4">
+      <div class="virus-image">
+        </div>
+        <div class="virus-details">
+          <div class="row">
+            <h3 class="virus-name"><%= virus.name %></h3>
+            <p class="virus-description text-wrap"><%= virus.description %></p>
+          </div>
+          <div class="row">
+            <p class="virus-price">$<%= virus.price %></p>
+          </div>
+        </div>
+        <div class= "btn-row mb-2">
+          <a class="btn btn-flat" href="#">View</a>
+          <a class="btn btn-flat" href="#">Book</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
