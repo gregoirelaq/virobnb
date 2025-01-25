@@ -1,77 +1,32 @@
+<!-- app/views/viri/new.html.erb -->
 <h1>Create a New Virus</h1>
 
 <%= form_with model: @virus, local: true do |form| %>
   <% if @virus.errors.any? %>
-    <div class="errors">
-      <h2>Form has errors:</h2>
-      <ul>
-        <% @virus.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="error-messages">
+    <h2>The following errors occurred:</h2>
+    <ul>
+      <% @virus.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  <!-- Name -->
   <div>
     <%= form.label :name, "Virus Name" %>
     <%= form.text_field :name, required: true %>
   </div>
 
-  <!-- Description -->
   <div>
     <%= form.label :description, "Description" %>
     <%= form.text_area :description, required: true %>
   </div>
 
-  <!-- Price -->
   <div>
     <%= form.label :price, "Price" %>
     <%= form.number_field :price, step: 0.01, required: true %>
   </div>
 
-  <!-- Contagion Rate -->
-  <div>
-    <%= form.label :contagion_rate, "Contagion Rate (%)" %>
-    <%= form.number_field :contagion_rate, min: 0, max: 100, step: 0.1, required: true %>
-  </div>
-
-  <!-- Symptom Severity -->
-  <div>
-    <%= form.label :symptom_severity, "Symptom Severity" %>
-    <%= form.select :symptom_severity, ["Mild", "Moderate", "Severe"], required: true %>
-  </div>
-
-  <!-- Incubation Period -->
-  <div>
-    <%= form.label :incubation_period, "Incubation Period (days)" %>
-    <%= form.number_field :incubation_period, required: true %>
-  </div>
-
-  <!-- Duration -->
-  <div>
-    <%= form.label :duration, "Duration (days)" %>
-    <%= form.number_field :duration, required: true %>
-  </div>
-
-  <!-- Region -->
-  <div>
-    <%= form.label :region, "Region" %>
-    <%= form.text_field :region, required: true %>
-  </div>
-
-  <!-- Vaccine Accessibility -->
-  <div>
-    <%= form.label :vaccine_accessibility, "Vaccine Accessibility" %>
-    <%= form.select :vaccine_accessibility, ["Available", "Limited", "Not Available"], required: true %>
-  </div>
-
-  <!-- Image URL -->
-  <div>
-    <%= form.label :image_url, "Image URL" %>
-    <%= form.text_field :image_url, required: true %>
-  </div>
-
-  <!-- Submit Button -->
   <%= form.submit "Create Virus" %>
 <% end %>

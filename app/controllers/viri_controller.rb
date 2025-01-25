@@ -1,4 +1,5 @@
 class ViriController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   def index
     @viri = Virus.all
   end
@@ -9,8 +10,12 @@ class ViriController < ApplicationController
 
   def create
     @virus = Virus.new(virus_params)
-    @virus.save
-    redirect_to virus_path(@virus)
+    @virus.user = current_user
+    if @virus.save
+      redirect_to @virus, notice: "Virus created successfully!"
+    else
+      render :new
+    end
   end
 
   def show
