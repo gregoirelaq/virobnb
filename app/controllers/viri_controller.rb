@@ -18,6 +18,11 @@ class ViriController < ApplicationController
     end
   end
 
+  def show
+    @virus = Virus.find(params[:id])
+    @booking = Booking.new
+  end
+
   private
 
   def virus_params
