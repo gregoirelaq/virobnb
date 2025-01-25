@@ -1,6 +1,43 @@
-<%= simple_form_for [@virus, @booking] do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.submit %>
-<% end %>
+<!-- Bannière pleine largeur -->
+<div class="banner" style="background-image: url('https://images.unsplash.com/flagged/photo-1584036561584-b03c19da874c'); background-size: cover; background-position: center; height: 600px;"></div>
+
+<!-- Conteneur principal centré -->
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+
+  <!-- Flex-container principal -->
+  <div class="flex-container" style="display: flex; gap: 20px; margin-top: 30px;">
+
+    <!-- Colonne principale (3/4 de la largeur) -->
+    <div style="flex: 3; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+      <h2 style="margin-bottom: 15px; color: #333;"><%= @virus.name %></h2>
+      <p style="margin-bottom: 15px; line-height: 1.6; color: #555;">Description :</p>
+      <p style="margin-bottom: 15px; line-height: 1.6; color: #555;"><%= @virus.description %></p>
+      <p style="font-weight: bold; color: #333;" id="price-value">Prix par jour : <%= number_to_currency(@virus.price, unit: "€") %></p>
+    </div>
+
+    <!-- Colonne formulaire (1/4 de la largeur) -->
+    <div style="flex: 1; background-color: #ffffff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+      <h3 style="margin-bottom: 20px; color: #333;">Réserver un virus</h3>
+      <%= simple_form_for [@virus, @booking] do |f| %>
+        <div style="margin-bottom: 15px;">
+          <%= f.input :start_date, label: "Date de début", input_html: { id: "start_date", style: "width: 100%;" } %>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <%= f.input :end_date, label: "Date de fin", input_html: { id: "end_date", style: "width: 100%;" } %>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <p>Prix total : <%= @booking.total_price %></p>
+        </div>
+        <div>
+          <%= f.submit "Réserver maintenant", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;" %>
+        </div>
+      <% end %>
+
+    <!-- Affichage du prix total -->
+    <div id="total-price" style="margin-top: 20px; font-weight: bold; color: #333;">
+      <!-- Le prix sera mis à jour ici -->
+      Total : <span id="price-value">0 €</span>
+    </div>
+  </div>
+</div>
 </div>
