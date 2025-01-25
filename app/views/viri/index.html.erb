@@ -14,7 +14,8 @@
           </div>
         </div>
         <div class= "btn-row mb-2">
-          <a class="btn btn-flat" href="#">View</a>
+          <%= link_to "View", virus_path(virus.id), class: "btn btn-flat" %>
+          <%# <%= link_to "Show, "path_to_booking_of_virus", class: "btn btn-flat" %> 
           <a class="btn btn-flat" href="#">Book</a>
         </div>
       </div>
