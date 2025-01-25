@@ -13,10 +13,14 @@ class ViriController < ApplicationController
     redirect_to virus_path(@virus)
   end
 
+  def show
+    @virus = Virus.find(params[:id])
+    @booking = Booking.new
+  end
+
   private
 
   def virus_params
     params.require(:virus).permit(:name, :price, :description)
   end
-
 end

@@ -11,6 +11,7 @@ class CreateViri < ActiveRecord::Migration[7.1]
       t.string :region
       t.string :vaccine_availability
       t.string :image_url
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
