@@ -1,4 +1,24 @@
-<div class="container d-flex justify-content-center">
+<div class="search-container d-flex justify-content-center">
+  <%= form_with url: root_path, method: :get, class: "search-form", local: true do %>
+    <input
+      type="text"
+      name="query"
+      placeholder="Search for a virus"
+      class="search-input"
+      value="<%= params[:query] %>"
+    />
+    <button type="submit" class="search-button">
+      Search
+    </button>
+  <% end %>
+</div>
+
+<div class="post-virus container d-flex justify-content-center">
+  <%= link_to "+ Post a Virus", new_virus_path(), class: "btn btn-flat" %>
+  <%# <p class="btn btn-flat"> + Post a Virus</p> %>
+</div>
+
+<div class="container d-flex align-left">
   <div class="virus-container grid">
     <% @viri.each do |virus| %>
     <div class="virus-card mb-3 g-col-4">
@@ -9,13 +29,14 @@
             <h3 class="virus-name"><%= virus.name %></h3>
             <p class="virus-description text-wrap"><%= virus.description %></p>
           </div>
-          <div class="row">
-            <p class="virus-price">$<%= virus.price %></p>
-          </div>
+          <%# <div class="row">
+            <p class="virus-price">$<%= virus.price %>
+          <%# </div> %>
         </div>
-        <div class= "btn-row mb-2">
-          <a class="btn btn-flat" href="#">View</a>
-          <a class="btn btn-flat" href="#">Book</a>
+        <div class= "btn-row d-flex justify-content-end ms-2 mb-2">
+          <p class="virus-price">$<%= virus.price %></p>
+          <%= link_to "View", virus_path(virus.id), class: "btn btn-flat" %>
+          <%= link_to "Book", virus_path(virus.id), class: "btn btn-flat" %>
         </div>
       </div>
     <% end %>
