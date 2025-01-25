@@ -11,3 +11,22 @@
   color: white;
   }
 }
+
+$button-color: #FA345A;
+$button-hover-color: darken($button-color, 10%);
+
+button, input[type="submit"] {
+  background-color: $button-color;
+  color: white;
+  padding: 15px;
+  width: 100%;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: $button-hover-color;
+}
