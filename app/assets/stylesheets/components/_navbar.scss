@@ -10,3 +10,27 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.rotate-180 {
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+/* Couleurs personnalisées */
+.text-logo {
+  color: #FA345A; /* Couleur pour le logo */
+  transition: color 0.3s ease-in-out; /* Animation pour le hover */
+}
+
+.text-logo:hover {
+  color: #FA345A; /* Changement de couleur au survol */
+}
+
+.text-brand {
+  color: #FA345A; /* Couleur pour le texte */
+  font-weight: bold;
+}
+
+.text-brand:hover {
+  color: #FA345A; /* Changement de couleur au survol */
+}
