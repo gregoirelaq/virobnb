@@ -8,9 +8,16 @@
 
   &:hover {
     background-color: #ddd;
-    color:#FA345A
+    color:#FA345A;
   }
 }
+
+.btn-flat:active {
+  background-color: #ddd;
+  color:#FA345A;
+}
+
+
 
 $button-color: #FA345A;
 $button-hover-color: darken($button-color, 10%);

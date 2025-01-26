@@ -50,11 +50,14 @@
 }
 
 .btn-row {
-  justify-content: flex-end;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   top: 8px;
   bottom: 8px;
   right: 8px;
+  margin: 4px;
+  position: relative;
+
 }
 
 .virus-description {
