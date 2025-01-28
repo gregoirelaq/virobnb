@@ -34,3 +34,25 @@
 .text-brand:hover {
   color: #FA345A; /* Changement de couleur au survol */
 }
+
+.btn-add-virus {
+  background-color: #FA345A;
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  border-radius: 50px; /* Bords complètement arrondis */
+  padding: 10px 20px; /* Espacement interne */
+  text-decoration: none; /* Supprime le soulignement */
+  display: inline-block; /* Assure l'affichage en ligne */
+  transition: background-color 0.3s ease; /* Animation au survol */
+}
+
+.btn-add-virus:hover {
+  background-color: #E41D5C; /* Couleur au survol */
+}
+
+.btn-add-virus:hover,
+.btn-add-virus:focus,
+.btn-add-virus:active {
+  color: white; /* Conserve la couleur blanche au survol et lors du clic */
+  text-decoration: none; /* Supprime également le soulignement */
+}
