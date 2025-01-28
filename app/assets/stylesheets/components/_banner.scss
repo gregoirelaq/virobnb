@@ -1,0 +1,98 @@
+
+.banner-background {
+  position: relative; /* To position the overlay */
+  background-image: url('https://images.unsplash.com/flagged/photo-1584036561584-b03c19da874c');
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.banner::before {
+  content: ''; /* Empty content for the pseudo-element */
+  position: absolute; /* Position it on top of the background image */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9); /* Black overlay with 50% opacity */
+  z-index: 1; /* Place the overlay behind the text */
+}
+
+
+/* Centered Banner Styling */
+.centered-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.banner-content {
+  max-width: 600px;
+  animation: fadeIn 1.5s ease-in-out;
+
+
+}
+
+.banner-image {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  position: relative; /* Ensure text appears on top of the overlay */
+  z-index: 2; /* Text above the overlay */
+  color: #ddd;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Adds shadow for better readability */
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  position: relative; /* Ensure text appears on top of the overlay */
+  z-index: 2; /* Text above the overlay */
+  color: #ddd;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Adds shadow for better readability */
+}
+
+.button {
+  display: inline-block;
+  background-color: white;
+  color: #ddd;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  position: relative; /* Ensure text appears on top of the overlay */
+  z-index: 2; /* Text above the overlay */
+}
+
+.button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}

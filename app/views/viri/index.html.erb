@@ -1,3 +1,13 @@
+<%# banner %>
+<div class="centered-banner banner-background">
+  <div class="banner-content">
+    <h1>Bienvenue sur ViroBnB !</h1>
+    <p>Louez un virus humain – Pour une expérience contagieuse à ne pas manquer ! 🦠</p>
+    <a href="#virus-list" class="btn btn-flat">Voir les virus disponibles</a>
+  </div>
+</div>
+
+<%# search bar %>
 <div class="search-container d-flex justify-content-center">
   <%= form_with url: root_path, method: :get, class: "search-form", local: true do %>
     <input
@@ -13,12 +23,13 @@
   <% end %>
 </div>
 
+<%# virus cards %>
 <div class="post-virus container d-flex justify-content-center">
   <%= link_to "+ Post a Virus", new_virus_path(), class: "btn btn-flat" %>
   <%# <p class="btn btn-flat"> + Post a Virus</p> %>
 </div>
 
-<div class="container d-flex align-left">
+<div class="container d-flex align-left" id="virus-list">
   <div class="virus-container grid">
     <% @viri.each do |virus| %>
     <div class="virus-card mb-3 g-col-4">
@@ -33,10 +44,9 @@
             <p class="virus-price">$<%= virus.price %>
           <%# </div> %>
         </div>
-        <div class= "btn-row d-flex justify-content-end ms-2 mb-2">
-          <p class="virus-price">$<%= virus.price %></p>
+        <div class= "btn-row d-flex ms-2 mb-2">
+          <p class="virus-price">€<%= virus.price %></p>
           <%= link_to "View", virus_path(virus.id), class: "btn btn-flat" %>
-          <%= link_to "Book", virus_path(virus.id), class: "btn btn-flat" %>
         </div>
       </div>
     <% end %>
