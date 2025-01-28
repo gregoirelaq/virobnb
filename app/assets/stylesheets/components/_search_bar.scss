@@ -25,14 +25,15 @@
 }
 
 .search-button {
-  padding: 12px 20px;
+  padding: 12px 9px;
   background-color: #FA345A;
   color: white;
   border: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 16px;
-  width: 140px;
+  align-items: flex-end;
+  width: 120px;
 }
 
 .search-button:hover {
