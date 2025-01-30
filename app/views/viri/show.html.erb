@@ -60,31 +60,6 @@
       </div>
     </div>
     </div>
-
-    <h2>Reviews</h2>
-
-    <% if user_signed_in? %>
-      <% if current_user.bookings.where(virus: @virus).exists? %>
-        <%= link_to "Leave a Review", new_virus_review_path(@virus), class: "btn btn-primary" %>
-      <% else %>
-        <p class="text-muted">You must book this virus before leaving a review.</p>
-      <% end %>
-    <% else %>
-      <p class="text-muted">Please <%= link_to "log in", new_user_session_path %> to leave a review.</p>
-    <% end %>
-
-    <% @virus.reviews.order(created_at: :desc).each do |review| %>
-      <div class="review">
-        <div class="d-flex align-items-center mb-2">
-          <strong><%= review.user.first_name %></strong>
-          <span class="ms-2">Rated: <%= review.rating %> / 5</span>
-        </div>
-        <p><%= review.comment %></p>
-        <small class="text-muted">Posted on <%= review.created_at.strftime("%B %d, %Y") %></small>
-        <hr>
-      </div>
-    <% end %>
-
   </div>
 
 </div>
