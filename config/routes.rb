@@ -15,6 +15,9 @@ Rails.application.routes.draw do
         get :calculate_price
       end
     end
+
+    # Routes imbriquées pour les reviews
+    resources :reviews, only: [:new, :create]
   end
 
   resources :bookings, only: [:destroy]
