@@ -23,26 +23,25 @@
   <% end %>
 </div>
 
-<%# virus cards %>
 <div class="post-virus container d-flex justify-content-center">
   <%= link_to "+ Post a Virus", new_virus_path(), class: "btn btn-flat" %>
-  <%# <p class="btn btn-flat"> + Post a Virus</p> %>
 </div>
 
 <div class="container d-flex align-left" id="virus-list">
   <div class="virus-container grid">
     <% if @viri.any? %>
       <% @viri.each do |virus| %>
-      <div class="virus-card mb-3 g-col-4">
+      <div class="virus-card-index mb-3 g-col-4">
         <div class="virus-image">
+          <img src="<%= virus.photo.present? ? cl_image_path(virus.photo.key) : "https://cdn.pixabay.com/photo/2022/01/23/16/24/boy-6961335_1280.jpg" %>"/>
+        </div>
+        <div class="virus-details">
+          <div class="row">
+            <h3 class="virus-name"><%= virus.name %></h3>
+            <p class="virus-description text-wrap"><%= virus.description %></p>
           </div>
-          <div class="virus-details">
-            <div class="row">
-              <h3 class="virus-name"><%= virus.name %></h3>
-              <p class="virus-description text-wrap"><%= virus.description %></p>
-            </div>
-          </div>
-          <div class= "btn-row d-flex ms-2 mb-2">
+        </div>
+        <div class= "btn-row d-flex ms-2 mb-2">
             <p class="virus-price">€<%= virus.price %></p>
             <%= link_to "View", virus_path(virus.id), class: "view-virus btn btn-flat" %>
           </div>

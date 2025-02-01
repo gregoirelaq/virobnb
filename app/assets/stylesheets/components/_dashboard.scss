@@ -23,6 +23,7 @@
 .tabs {
   display: flex;
   border-bottom: 2px solid #ddd;
+  justify-content: space-between;
 }
 
 .tab-btn {
@@ -34,6 +35,7 @@
   position: relative;
   color: #FA345A;
   transition: background-color 0.3s ease, color 0.3s ease;
+  justify-content: space-between;
 }
 
 .tab-btn.active {
@@ -43,7 +45,8 @@
 }
 
 .tab-btn.hover {
-  background-color: #FA345A;
+  background-color: #ddd;
+  color: #FA345A;
 }
 
 .tab-btn::after {
