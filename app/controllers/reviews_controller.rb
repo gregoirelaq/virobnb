@@ -1,20 +1,21 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_virus, only: [:new, :create]
-
-  def new
-    @review = Review.new
-  end
+  before_action :set_virus, only: [:create]
 
   def create
-    @review = Review.new(review_params)
+    @review = @virus.reviews.build(review_params) # Utilisation de `build` pour associer directement au virus
     @review.user = current_user
-    @review.virus = @virus
 
     if @review.save
-      redirect_to @virus, notice: "Your review was successfully submitted."
+      respond_to do |format|
+        format.html { redirect_to @virus, notice: "Your review was successfully submitted." } # En cas de requête HTML normale
+        format.js   # Réponse AJAX (cette ligne active `create.js.erb`)
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render 'viri/show', status: :unprocessable_entity }
+        format.js   # En cas d'erreur AJAX
+      end
     end
   end
 

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
 
     # Routes imbriquées pour les reviews
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [:create]
   end
 
   resources :bookings, only: [:destroy]

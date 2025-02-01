@@ -59,33 +59,59 @@
         <% end %>
       </div>
     </div>
-    </div>
+  </div>
 
-    <h2>Reviews</h2>
+  <!-- Section Reviews -->
+  <h2 class="mt-5">Reviews</h2> <!-- Ajout d'une marge pour éviter que le titre soit trop collé au bloc précédent -->
 
-    <% if user_signed_in? %>
-      <% if current_user.bookings.where(virus: @virus).exists? %>
-        <%= link_to "Leave a Review", new_virus_review_path(@virus), class: "btn btn-primary" %>
-      <% else %>
-        <p class="text-muted">You must book this virus before leaving a review.</p>
+  <% if user_signed_in? && current_user.bookings.where(virus: @virus).exists? %>
+    <div class="review-form-container mt-4 p-4 bg-white shadow-sm rounded" style="max-width: 600px;">
+      <h4 class="mb-3">Leave a Review</h4> <!-- Aligné à gauche -->
+
+      <%= form_with model: [@virus, Review.new], url: virus_reviews_path(@virus), local: false, html: { id: "review-form" } do |f| %>
+        <div class="mb-3">
+          <%= f.label :rating, class: "form-label" %>
+          <div id="star-rating" class="d-flex gap-1">
+            <% (1..5).each do |star| %>
+              <i class="fa fa-star text-secondary star-icon" data-value="<%= star %>"></i>
+            <% end %>
+          </div>
+          <%= f.hidden_field :rating, id: "rating-input" %> <!-- Champ caché pour stocker la note -->
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :comment, "Your Review", class: "form-label" %>
+          <%= f.text_area :comment, rows: 3, class: "form-control" %>
+        </div>
+
+        <%= f.submit "Submit Review", class: "btn btn-primary px-4 py-2" %> <!-- Aligné à gauche -->
       <% end %>
-    <% else %>
-      <p class="text-muted">Please <%= link_to "log in", new_user_session_path %> to leave a review.</p>
-    <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted mt-3">
+      <% if user_signed_in? %>
+        You must book this virus before leaving a review.
+      <% else %>
+        Please <%= link_to "log in", new_user_session_path %> to leave a review.
+      <% end %>
+    </p>
+  <% end %>
 
+  <hr class="mt-5"> <!-- Ajout d'un espace avant la section des reviews -->
+
+  <!-- Conteneur des reviews pour l'AJAX -->
+  <h2>Recent Reviews</h2>
+  <div id="reviews-container">
     <% @virus.reviews.order(created_at: :desc).each do |review| %>
-      <div class="review">
+      <div class="review p-3 mb-3 bg-light rounded">
         <div class="d-flex align-items-center mb-2">
           <strong><%= review.user.first_name %></strong>
           <span class="ms-2">Rated: <%= review.rating %> / 5</span>
         </div>
         <p><%= review.comment %></p>
         <small class="text-muted">Posted on <%= review.created_at.strftime("%B %d, %Y") %></small>
-        <hr>
       </div>
     <% end %>
-
   </div>
 
-</div>
 </div>
