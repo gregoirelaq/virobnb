@@ -1,6 +1,7 @@
-<!-- Bannière pleine largeur -->
+<!-- Bannière en haut de page -->
 <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; margin-top: 30px;">
-  <div style="background-image: url('<%= cl_image_tag @virus.photo.key %>'); background-size: cover; background-position: center; height: 500px; border-radius: 10px;">
+  <div style="background-image: url('<%= @virus.photo.present? ? cl_image_path(@virus.photo.key) : "https://cdn.pixabay.com/photo/2022/01/23/16/24/boy-6961335_1280.jpg" %>');
+              background-size: cover; background-position: center; height: 500px; border-radius: 10px;">
   </div>
 </div>
 
@@ -11,108 +12,101 @@
   <div class="flex-container" style="display: flex; gap: 30px; margin-top: 30px;">
 
     <!-- Colonne gauche (3/4 de la largeur) -->
-    <div style="flex: 3;">
-
-    <!-- Colonne principale (3/4 de la largeur) -->
     <div style="flex: 3; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-      <h2 style="margin-bottom: 15px; color: #333;"><%= @virus.name %></h2>
-      
-      <p style="margin-bottom: 15px; line-height: 1.6; color: #555;">Description :</p>
-      <p style="margin-bottom: 15px; line-height: 1.6; color: #555;"><%= @virus.description %></p>
-      <p style="font-weight: bold; color: #333;" id="price-value">Prix par jour : <%= number_to_currency(@virus.price, unit: "€") %></p>
-      <!-- Titre et détails -->
-      <div style="margin-bottom: 30px;">
-        <h1 style="font-size: 28px; font-weight: bold; color: #333; margin-bottom: 10px;"><%= @virus.name %></h1>
-        <p style="font-size: 16px; color: #777;">Spécialité : Maladies infectieuses</p>
-      </div>
 
-      <!-- Description -->
-      <div style="margin-bottom: 30px;">
-        <h2 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 15px;">Description</h2>
-        <p style="line-height: 1.8; color: #555;"><%= @virus.description %></p>
-      </div>
+      <!-- Détails du virus -->
+      <h2 style="margin-bottom: 15px; color: #333;"><%= @virus.name %></h2>
+      <p style="margin-bottom: 15px; line-height: 1.6; color: #555;"><%= @virus.description %></p>
+      <p style="font-weight: bold; color: #333;">Prix par jour : <%= number_to_currency(@virus.price, unit: "€") %></p>
 
       <!-- Informations supplémentaires -->
       <div style="margin-bottom: 30px; padding: 20px;">
         <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #333;">Détails</h3>
         <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 10px; color: #555;"><strong>Contagion rate</strong><%= @virus.contagion_rate %></li>
-          <li style="margin-bottom: 10px; color: #555;"><strong>Symptom severity</strong><%= @virus.symptom_severity %></li>
-          <li style="margin-bottom: 10px; color: #555;"><strong>Incubation period :</strong><%= @virus.incubation_period %></li>
-          <li style="margin-bottom: 10px; color: #555;"><strong>Region :</strong><%= @virus.region %></li>
+          <li style="margin-bottom: 10px; color: #555;"><strong>Contagion rate:</strong> <%= @virus.contagion_rate %></li>
+          <li style="margin-bottom: 10px; color: #555;"><strong>Symptom severity:</strong> <%= @virus.symptom_severity %></li>
+          <li style="margin-bottom: 10px; color: #555;"><strong>Incubation period:</strong> <%= @virus.incubation_period %></li>
+          <li style="margin-bottom: 10px; color: #555;"><strong>Region:</strong> <%= @virus.region %></li>
         </ul>
       </div>
     </div>
 
-    <!-- Colonne formulaire (1/4 de la largeur) -->
-    <div class="card shadow-sm border-0 rounded-3 p-4" data-controller="price" data-price-price-per-night-value="<%= @virus.price %>">
+    <!-- Colonne de droite (Formulaire de réservation) -->
+    <div class="card shadow-sm border-0 rounded-3 p-4"
+         data-controller="price"
+         data-price-price-per-night-value="<%= @virus.price %>">
+
       <div class="card-body">
-        <h2 class="h4 fw-bold mb-3">Book this virus</h2>
+        <h2 class="h4 fw-bold mb-3">Réserver ce virus</h2>
+
         <%= simple_form_for [@virus, @virus.bookings.new], html: { class: "needs-validation" } do |f| %>
 
-          <!-- Start Date -->
+          <!-- Date de début -->
           <div class="mb-3">
-            <label class="form-label">Start Date</label>
+            <label class="form-label">Date de début</label>
             <%= f.input :start_date,
-                as: :string,
-                input_html: {
-                  class: "form-control",
-                  data: { controller: "datepicker", price_target: "startDate" }
-                },
-                label: false %>
+                        as: :string,
+                        input_html: {
+                          type: "date",
+                          class: "form-control",
+                          data: { controller: "datepicker", price_target: "startDate" }
+                        },
+                        label: false %>
           </div>
 
-          <!-- End Date -->
+          <!-- Date de fin -->
           <div class="mb-3">
-            <label class="form-label">End Date</label>
+            <label class="form-label">Date de fin</label>
             <%= f.input :end_date,
-                as: :string,
-                input_html: {
-                  class: "form-control",
-                  data: { controller: "datepicker", price_target: "endDate" }
-                },
-                label: false %>
+                        as: :string,
+                        input_html: {
+                          type: "date",
+                          class: "form-control",
+                          data: { controller: "datepicker", price_target: "endDate" }
+                        },
+                        label: false %>
           </div>
 
-          <!-- Total Price Display -->
+          <!-- Affichage du prix total -->
           <div class="d-flex justify-content-between align-items-center fs-5 fw-semibold">
-            <span>Total Price:</span>
-            <span data-price-target="totalPrice">$0.00</span>
+            <span>Prix total:</span>
+            <span data-price-target="totalPrice">0 €</span>
           </div>
 
-          <!-- Book Now Button -->
+          <!-- Bouton de réservation -->
           <div class="mt-3">
-            <%= f.button :submit, "Book Now", class: "btn btn-danger w-100 fw-semibold py-2" %>
+            <%= f.button :submit, "Réserver maintenant", class: "btn-flat" %>
           </div>
 
         <% end %>
       </div>
     </div>
-    </div>
   </div>
 
-    <h2>Reviews</h2>
+  <!-- Section des avis -->
+  <h2>Reviews</h2>
 
-    <% if user_signed_in? %>
-      <% if current_user.bookings.where(virus: @virus).exists? %>
-        <%= link_to "Leave a Review", new_virus_review_path(@virus), class: "btn btn-primary" %>
-      <% else %>
-        <p class="text-muted">You must book this virus before leaving a review.</p>
-      <% end %>
+  <% if user_signed_in? %>
+    <% if current_user.bookings.where(virus: @virus).exists? %>
+      <%= link_to "Laisser un avis", new_virus_review_path(@virus), class: "btn-flat" %>
     <% else %>
-      <p class="text-muted">Please <%= link_to "log in", new_user_session_path %> to leave a review.</p>
+      <p class="text-muted">Vous devez réserver ce virus avant de laisser un avis.</p>
     <% end %>
+  <% else %>
+    <p class="text-muted">Veuillez <%= link_to "vous connecter", new_user_session_path %> pour laisser un avis.</p>
+  <% end %>
 
-    <% @virus.reviews.order(created_at: :desc).each do |review| %>
-      <div class="review">
-        <div class="d-flex align-items-center mb-2">
-          <strong><%= review.user.first_name %></strong>
-          <span class="ms-2">Rated: <%= review.rating %> / 5</span>
-        </div>
-        <p><%= review.comment %></p>
-        <small class="text-muted">Posted on <%= review.created_at.strftime("%B %d, %Y") %></small>
-        <hr>
+  <!-- Affichage des avis -->
+  <% @virus.reviews.order(created_at: :desc).each do |review| %>
+    <div class="review">
+      <div class="d-flex align-items-center mb-2">
+        <strong><%= review.user.first_name %></strong>
+        <span class="ms-2">Note: <%= review.rating %> / 5</span>
       </div>
+      <p><%= review.comment %></p>
+      <small class="text-muted">Posté le <%= review.created_at.strftime("%d %B %Y") %></small>
+      <hr>
+    </div>
+  <% end %>
 
-</div>
 </div>
