@@ -2,6 +2,9 @@ class ViriController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
     @viri = Virus.all
+    if params[:query].present?
+      @viri = @viri.where("name ILIKE ?", "%#{params[:query]}%")
+    end
   end
 
   def new

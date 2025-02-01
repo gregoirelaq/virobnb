@@ -31,24 +31,25 @@
 
 <div class="container d-flex align-left" id="virus-list">
   <div class="virus-container grid">
-    <% @viri.each do |virus| %>
-    <div class="virus-card mb-3 g-col-4">
-      <div class="virus-image">
-        </div>
-        <div class="virus-details">
-          <div class="row">
-            <h3 class="virus-name"><%= virus.name %></h3>
-            <p class="virus-description text-wrap"><%= virus.description %></p>
+    <% if @viri.any? %>
+      <% @viri.each do |virus| %>
+      <div class="virus-card mb-3 g-col-4">
+        <div class="virus-image">
           </div>
-          <%# <div class="row">
-            <p class="virus-price">$<%= virus.price %>
-          <%# </div> %>
+          <div class="virus-details">
+            <div class="row">
+              <h3 class="virus-name"><%= virus.name %></h3>
+              <p class="virus-description text-wrap"><%= virus.description %></p>
+            </div>
+          </div>
+          <div class= "btn-row d-flex ms-2 mb-2">
+            <p class="virus-price">€<%= virus.price %></p>
+            <%= link_to "View", virus_path(virus.id), class: "view-virus btn btn-flat" %>
+          </div>
         </div>
-        <div class= "btn-row d-flex ms-2 mb-2">
-          <p class="virus-price">€<%= virus.price %></p>
-          <%= link_to "View", virus_path(virus.id), class: "btn btn-flat" %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    <% else %>
+      <p>Sorry, no virus found.</p>
+    <%end%>
   </div>
 </div>

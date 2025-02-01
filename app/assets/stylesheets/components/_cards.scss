@@ -41,6 +41,8 @@
   color: #333;
   text-align: left;
   align-items: flex-end;
+  position: absolute;
+  bottom: 60px;
 
 }
 
@@ -65,8 +67,13 @@
   bottom: 8px;
   right: 8px;
   margin: 4px;
-  position: relative;
+}
 
+.view-virus {
+  position: absolute;
+  // align-items: flex-end;
+  bottom: 18px;
+  right: 18px;
 }
 
 .virus-description {

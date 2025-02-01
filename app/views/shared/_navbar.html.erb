@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top px-5">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
       <i class="fa-brands fa-airbnb fa-2x me-2 rotate-180 text-logo"></i>
@@ -13,12 +13,14 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+          <li class="nav-item ms-3">
+             <%= link_to new_virus_path, class: "btn-add-virus" do %>
+                <i class="fa-solid fa-plus"></i> Add Virus
+             <% end %>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown ms-3">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
           </a>

@@ -15,7 +15,18 @@ Rails.application.routes.draw do
         get :calculate_price
       end
     end
+
+    # Routes imbriquées pour les reviews
+    resources :reviews, only: [:new, :create]
   end
 
   resources :bookings, only: [:destroy]
+
+  resources :dashboard, only: [:index] do
+    collection do
+      get :bookings  # Defines dashboard/bookings path
+    end
+  end
+
+
 end
