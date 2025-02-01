@@ -1,0 +1,62 @@
+
+  .table {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .table-header {
+    margin-bottom: 3px;
+  }
+
+.table-container {
+  display: flex;
+  background-color: #ddd;
+  padding: 10px;
+  margin: 20px;
+  width: auto;
+  border-radius: 5px;
+  border-color:#FA345A;
+  border: 2px;
+}
+
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+  color: #FA345A;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-btn.active {
+  font-weight: bold;
+  background-color: var(--tab-bgcolor, #f0f0f0); /* Dynamic background */
+  color: var(--underline-color, #FA345A); /* Dynamic text color */
+}
+
+.tab-btn.hover {
+  background-color: #FA345A;
+}
+
+.tab-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 3px;
+  background-color: transparent; /* Default: No underline */
+  transition: background-color 0.3s ease;
+}
+
+.tab-btn.active::after {
+  background-color: var(--underline-color, #FA345A); /* Dynamic underline */
+}

@@ -21,4 +21,12 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: [:destroy]
+
+  resources :dashboard, only: [:index] do
+    collection do
+      get :bookings  # Defines dashboard/bookings path
+    end
+  end
+
+
 end
