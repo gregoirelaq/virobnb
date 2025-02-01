@@ -38,7 +38,7 @@
         <div class="virus-details">
           <div class="row">
             <h3 class="virus-name"><%= virus.name %></h3>
-            <p class="virus-description text-wrap"><%= virus.description %></p>
+            <p class="virus-description text-wrap"><%= virus.description.truncate_words(15)%></p>
           </div>
         </div>
         <div class= "btn-row d-flex ms-2 mb-2">

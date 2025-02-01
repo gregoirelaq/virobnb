@@ -13,7 +13,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 400px;
   height: 500px;
-  position: relative; // break
+  position: relative;
 }
 
 .form-card {
@@ -28,6 +28,10 @@
 .virus-image img {
   max-width: 100%;
   border-radius: 4px;
+  height: 210px;
+  width: 365px;
+  object-fit: cover;
+  margin-bottom: 7px;
 }
 
 .virus-name {

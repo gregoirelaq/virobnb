@@ -5,7 +5,9 @@
   <div class="tabs">
   <button class="tab-btn active" data-tab="overview" data-color="#007bff" data-bgcolor="#e0f0ff" onclick="showTab(event, 'overview')">Overview</button>
   <button class="tab-btn" data-tab="profile" data-color="#007bff" data-bgcolor="#e0f0ff" onclick="showTab(event, 'profile')">Profile</button>
-  <button class="tab-btn" data-tab="bookings" data-color="#28a745" data-bgcolor="#e0ffe0" onclick="showTab(event, 'bookings')">Bookings</button>
+
+  <button class="tab-btn" data-tab="bookings" data-color="#28a745" data-bgcolor="#e0ffe0" onclick="window.location.href='<%= dashboard_bookings_path %>'">Bookings</button>
+  <%# <button class="tab-btn" data-tab="bookings" data-color="#28a745" data-bgcolor="#e0ffe0" onclick="showTab(event, 'bookings')">Bookings</button> %>
   </div>
 
 
