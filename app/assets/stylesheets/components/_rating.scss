@@ -1,0 +1,17 @@
+.star-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.star-icon:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.text-warning {
+  color: gold !important; /* Couleur des étoiles sélectionnées */
+}
+
+.text-secondary {
+  color: lightgray !important; /* Couleur des étoiles non sélectionnées */
+}

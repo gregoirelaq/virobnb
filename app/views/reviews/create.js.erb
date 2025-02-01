@@ -1,0 +1,15 @@
+// Ajouter la nouvelle review sans recharger la page
+document.querySelector("#reviews-container").insertAdjacentHTML("afterbegin", `
+  <div class="review">
+    <div class="d-flex align-items-center mb-2">
+      <strong><%= @review.user.first_name %></strong>
+      <span class="ms-2">Rated: <%= @review.rating %> / 5</span>
+    </div>
+    <p><%= @review.comment %></p>
+    <small class="text-muted">Posted on <%= @review.created_at.strftime("%B %d, %Y") %></small>
+    <hr>
+  </div>
+`);
+
+// Réinitialiser le formulaire après soumission
+document.querySelector("#review-form").reset();

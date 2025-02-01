@@ -3,7 +3,7 @@
   <div class="banner-content">
     <h1>Bienvenue sur ViroBnB !</h1>
     <p>Louez un virus humain – Pour une expérience contagieuse à ne pas manquer ! 🦠</p>
-    <a href="#virus-list" class="btn btn-flat">Voir les virus disponibles</a>
+    <a href="#virus-list" class="btn btn-flat btn-voir-virus">Voir les virus disponibles</a>
   </div>
 </div>
 
@@ -38,7 +38,7 @@
         <div class="virus-details">
           <div class="row">
             <h3 class="virus-name"><%= virus.name %></h3>
-            <p class="virus-description text-wrap"><%= virus.description %></p>
+            <p class="virus-description text-wrap"><%= virus.description.truncate_words(15)%></p>
           </div>
         </div>
         <div class= "btn-row d-flex ms-2 mb-2">
