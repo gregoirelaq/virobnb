@@ -1,0 +1,21 @@
+<h1>All Bookings</h1>
+<%= link_to "Back to Dashboard", dashboard_index_path, class: "btn btn-flat" %>
+
+<div class="col-10 row table-container">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Virus</th>
+      <th>Booking Date</th>
+      <th>Total Price</th>
+    </tr>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.id %></td>
+        <td><%= booking.virus.name %></td>
+        <td>from <%= booking.start_date %> to <%= booking.end_date %></td>
+        <td><%= booking.total_price %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

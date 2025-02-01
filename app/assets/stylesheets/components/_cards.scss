@@ -6,14 +6,23 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.virus-card {
+.virus-card-index {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 400px;
-  height: 300px;
-  position: relative;
+  height: 500px;
+  position: relative; // break
+}
+
+.form-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: 700px;
 }
 
 .virus-image img {
