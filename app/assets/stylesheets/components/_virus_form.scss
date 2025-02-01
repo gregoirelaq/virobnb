@@ -25,6 +25,10 @@
   border-radius: 5px;
 }
 
+.form-control:focus {
+  border-color: #FA345A;
+}
+
 .btn-primary {
   border-radius: 5px;
 }
@@ -36,8 +40,8 @@
 }
 
 .accordion-button:hover {
-  color: #FA345A;
-  background-color:  #ddd;
+  color: #FA345A !important;
+  background-color:  #ddd !important;
   border-color:  #ddd !important;
 }
 
@@ -48,7 +52,7 @@
 }
 
 .accordion-button i {
-  color:  #ddd;
+  color:  #ddd !important;
 }
 
 .accordion-button:not(.collapsed) i {
