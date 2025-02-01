@@ -32,6 +32,6 @@ class ViriController < ApplicationController
   private
 
   def virus_params
-    params.require(:virus).permit(:name, :price, :description, :photo)
+    params.require(:virus).permit(:name, :price, :description, :photo, :contagion_rate, :symptom_severity, :incubation_period, :duration, :region, :vaccine_availability)
   end
 end
