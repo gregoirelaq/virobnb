@@ -8,7 +8,6 @@
   height: 100%;
 }
 
-/* Custom card style */
 .virus-card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -16,18 +15,46 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for the card header with margin top */
 .virus-card-header {
   text-align: center;
   margin-bottom: 20px;
   margin-top: 30px;
 }
 
-/* Style for form control (input, text area, etc.) */
 .form-control {
   border-radius: 5px;
 }
 
 .btn-primary {
   border-radius: 5px;
+}
+
+.accordion-button {
+  color:  #ddd;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.accordion-button:hover {
+  color: #FA345A;
+  background-color:  #ddd;
+  border-color:  #ddd !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #0c0c0c !important;
+  background-color: #ddd !important;
+  border-color: #FA345A !important;
+}
+
+.accordion-button i {
+  color:  #ddd;
+}
+
+.accordion-button:not(.collapsed) i {
+  color: #ddd !important;
+}
+
+.accordion-button:hover i {
+  color: #ddd !important;
 }
