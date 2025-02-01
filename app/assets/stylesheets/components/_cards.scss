@@ -12,8 +12,16 @@
   padding: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 400px;
-  height: 300px;
-  position: relative;
+  height: 500px;
+}
+
+.form-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: 650px;
 }
 
 .virus-image img {
