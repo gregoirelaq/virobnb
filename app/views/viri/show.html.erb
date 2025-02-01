@@ -16,7 +16,7 @@
     </div>
 
     <!-- Colonne formulaire (1/4 de la largeur) -->
-    <div class="card shadow-sm border-0 rounded-3 p-4" data-controller="price" data-price-price-per-night-value="<%= @virus.price %>">
+    <div class="card shadow-sm border-0 rounded-5 p-4" data-controller="price" data-price-price-per-night-value="<%= @virus.price %>">
       <div class="card-body">
         <h2 class="h4 fw-bold mb-3">Book this virus</h2>
         <%= simple_form_for [@virus, @virus.bookings.new], html: { class: "needs-validation" } do |f| %>
@@ -64,19 +64,34 @@
   <!-- Section Reviews -->
   <h2 class="mt-5">Reviews</h2> <!-- Ajout d'une marge pour éviter que le titre soit trop collé au bloc précédent -->
 
+  <!-- Affichage de la moyenne des reviews -->
+  <% if @reviews.any? %>
+    <div class="mb-3">
+      <h4 class="text-dark">
+        <i class="fa fa-star"></i> Average rating: <%= @average_rating %> / 5
+      </h4>
+    </div>
+  <% else %>
+    <div class="mb-3 text-muted">
+      <h4>No reviews yet</h4>
+    </div>
+  <% end %>
+
   <% if user_signed_in? && current_user.bookings.where(virus: @virus).exists? %>
-    <div class="review-form-container mt-4 p-4 bg-white shadow-sm rounded" style="max-width: 600px;">
+    <div class="review-form-container mt-4 p-4 bg-white shadow-sm rounded-5" style="max-width: 600px;">
       <h4 class="mb-3">Leave a Review</h4> <!-- Aligné à gauche -->
 
-      <%= form_with model: [@virus, Review.new], url: virus_reviews_path(@virus), local: false, html: { id: "review-form" } do |f| %>
+      <%= form_with model: [@virus, Review.new], url: virus_reviews_path(@virus), local: false, html: { id: "review-form", data: { controller: "rating" } } do |f| %>
         <div class="mb-3">
           <%= f.label :rating, class: "form-label" %>
-          <div id="star-rating" class="d-flex gap-1">
+          <div class="d-flex gap-1" data-action="mouseleave->rating#reset">
             <% (1..5).each do |star| %>
-              <i class="fa fa-star text-secondary star-icon" data-value="<%= star %>"></i>
+              <i class="fa fa-star text-secondary star-icon"
+                data-action="mouseover->rating#highlight click->rating#select"
+                data-value="<%= star %>"></i>
             <% end %>
           </div>
-          <%= f.hidden_field :rating, id: "rating-input" %> <!-- Champ caché pour stocker la note -->
+          <%= f.hidden_field :rating, id: "rating-input", data: { rating_target: "input" } %>
         </div>
 
         <div class="mb-3">
@@ -103,10 +118,14 @@
   <h2>Recent Reviews</h2>
   <div id="reviews-container">
     <% @virus.reviews.order(created_at: :desc).each do |review| %>
-      <div class="review p-3 mb-3 bg-light rounded">
+      <div class="review p-3 mb-3 bg-light rounded-5">
         <div class="d-flex align-items-center mb-2">
           <strong><%= review.user.first_name %></strong>
-          <span class="ms-2">Rated: <%= review.rating %> / 5</span>
+          <div class="review-rating ms-2">
+            <% (1..5).each do |star| %>
+              <i class="fa fa-star <%= star <= review.rating ? 'text-dark' : 'text-secondary' %>"></i>
+            <% end %>
+          </div>
         </div>
         <p><%= review.comment %></p>
         <small class="text-muted">Posted on <%= review.created_at.strftime("%B %d, %Y") %></small>
