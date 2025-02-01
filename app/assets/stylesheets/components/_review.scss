@@ -1,0 +1,19 @@
+.star-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.text-warning {
+  color: gold !important; /* Couleur des étoiles sélectionnées */
+}
+.text-secondary {
+  color: lightgray !important; /* Couleur des étoiles non sélectionnées */
+}
+
+.review-rating {
+  display: inline-flex;
+  gap: 4px; /* Espacement entre les étoiles */
+}
+
+.text-dark {
+  color: black !important; /* Étoiles sélectionnées (note donnée par l'utilisateur) */
+}
