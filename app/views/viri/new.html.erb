@@ -55,7 +55,7 @@
 
                         <div class="mb-3">
                           <%= form.label :region, "Region (Country)", class: "form-label" %>
-                          <%= form.select :region, ISO3166::Country.all.map { |country| [country.translations['en'], country.alpha2] }, { prompt: "Select a country" }, { class: "form-control", id: "region-select" } %>
+                          <%= form.select :region, ISO3166::Country.all.sort_by { |country| country.translations['en'] }.map { |country| [country.translations['en'], country.alpha2] }, { prompt: "Select a country" }, { class: "form-control", id: "region-select" } %>
                         </div>
                       </div>
                     </div>
